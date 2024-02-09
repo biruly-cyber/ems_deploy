@@ -1,0 +1,244 @@
+@startuml Crm 
+   class userCredential{
+     String Name
+     String email
+     String password
+     String designation
+     String designationType
+     object employeeId
+
+     signup()
+     login()
+     getProfile()
+   }
+
+   class admin{
+     String Name
+     String email
+     String password
+     String designation
+     String designationType
+     object employeeId
+
+     signup()
+     login()
+     getProfile()
+   }
+
+    class manager{
+     String Name
+     String email
+     String password
+     String designation
+     String designationType
+     object employeeId
+
+     signup()
+     login()
+     getProfile()
+   }
+
+   class employee{
+    string employeeName
+    string gender
+    string employeeEmail
+    string password
+    string employeePhoneNumber
+    string dateOfBirth
+    string address
+    string postOffice
+    string posliceStation
+    string city
+    string state 
+    string pinNumber
+    string designation
+    string department 
+
+    newEmployee()
+    allEmployee()
+    updateEmployee()
+    deleteEmployee()
+   }
+
+
+   class project{
+     string projectName
+     string projectStartDate
+     string projectEndDate
+     string priority
+     string description
+     string websiteUrl
+     boolean isCompleted
+     boolean isScrap
+     ..
+     object adminId
+     object teamId
+    --
+     newProject()
+     allproject()
+     updateProject()
+     deleteProject()
+     specificProject()
+     
+   }
+
+   class team{
+    string teamName
+    string teamDeascription
+    object adminProfile
+    object selectedMembers
+    object selectedManager
+    object selectProject
+    teamDetail()
+    allTeams()
+    updateTeam()
+    deleteTeam()
+   }
+
+   class task{
+    string taskTitle
+    string taskDescription
+    string employeeName
+    string projectName
+    string managerName
+    object assignTo
+    object taskOf
+    object managerId
+    boolean isTaskCompleted
+    boolean isRequested
+    string gitLink
+    string taskAssignDate
+    string taskEndDate
+    newtask()
+    allTask()
+    taskOfEmployee()
+    updateTask()
+    deleteTask()
+    specificProjectTask()
+   }
+
+
+   class reportTask{
+     string reportTitle
+     string reportDescription
+     boolean isTaskCompleted
+     boolean isRequested
+     string gitlink
+     string projectName
+     string employeeName
+     string taskTitle 
+     string managerName
+     object managerId
+     object projectId
+     object taskId 
+
+     reportTask()
+     allReport()
+     allTaskReport()
+     updateReport()
+     deleteReport()
+   }
+
+   class reportTaskFeedBack{
+    string managerName
+    object managerId
+    string feedback 
+    string employeeName
+    string taskReportTtile 
+    string taskReportDescription
+    object employeeId
+    object taskId 
+   }
+
+
+   class reportProject{
+    string reportTitle
+    string reportDescription
+    boolean isProjectCompleted
+    string projectName
+    object projectId
+    object managerId
+    object adminId
+
+    reportProject()
+    allReportOfSpecificProject()
+    updateProjectReport()
+    deleteReport()
+    allReport() 
+   }
+
+   class leaveDetails{
+    string leaveType
+    string fromDate
+    string toDate
+    string reason
+    string remarks
+    string name
+    string isAccepted
+    boolean isRejected
+    string totalDaysoftLeave
+    object employeeId
+
+    applyLeave()
+    leaveApplicstionRequest()
+    accepetedLeaveApplication()
+    rejectedLeaveApplication
+   }
+
+   class training{
+    string trainingName
+    string certificateId
+    string trainStart
+    string trainEnd
+
+    showTraining()
+    addTraining()
+   }
+
+
+
+    admin <-- userCredential
+
+    manager <-- userCredential
+
+    userCredential <-- employee
+
+    admin  --> project 
+
+    employee --> team 
+
+    team --> manager
+
+    project --> team 
+
+    manager --> task 
+
+    task --> employee
+
+    employee --> task
+
+    task  --> reportTask
+
+    reportTask --> manager  
+
+    manager --> reportProject
+
+    reportProject --> admin
+
+    manager --> reportTaskFeedBack
+
+    reportTaskFeedBack --> employee 
+
+    leaveDetails <-- employee  
+
+    leaveDetails --> manager 
+
+    employee --> training
+    training --> employee
+
+
+
+  '  note left: this is second class
+
+  '  myClass <... thirdClass
+@enduml
